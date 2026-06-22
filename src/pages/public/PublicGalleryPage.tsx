@@ -133,10 +133,10 @@ export default function PublicGalleryPage() {
                 <Card key={item.id} className="break-inside-avoid border-none shadow-md hover:shadow-xl transition-all rounded-[1.5rem] overflow-hidden bg-white group cursor-pointer">
                   <div className="relative">
                     {item.type === 'image' ? (
-                      <img src={item.url} alt={item.title} className="w-full object-cover" />
+                      <img src={item.file_url} alt={item.title} className="w-full object-cover" />
                     ) : (
                       <div className="relative">
-                        <video src={item.url} className="w-full object-cover" />
+                        <video src={item.file_url} className="w-full object-cover" />
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
                           <div className="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg">
                             <Video className="w-5 h-5 ml-1" />
