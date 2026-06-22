@@ -73,7 +73,8 @@ export const createCompetition = async (record: Omit<CompetitionRecord, 'id' | '
     event_time: event_time,
     location: record.location,
     prize: record.rules,
-    status: record.status
+    status: record.status,
+    created_by: userData.user.id
   }
 
   const { data, error } = await supabase

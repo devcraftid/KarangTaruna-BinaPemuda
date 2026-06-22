@@ -27,7 +27,7 @@ export const createAnnouncement = async (record: Omit<AnnouncementRecord, 'id' |
   const { data, error } = await supabase
     .from('announcements')
     .insert([
-      { ...record }
+      { ...record, created_by: userData.user.id }
     ])
     .select()
     .single()

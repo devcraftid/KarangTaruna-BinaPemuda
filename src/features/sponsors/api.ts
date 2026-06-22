@@ -72,7 +72,8 @@ export const createSponsor = async (record: Omit<SponsorRecord, 'id' | 'created_
         phone: record.phone,
         amount: amount,
         notes: notes,
-        status: mapStatusToDb(record.status)
+        status: mapStatusToDb(record.status),
+        created_by: userData.user.id
       }
     ])
     .select()
