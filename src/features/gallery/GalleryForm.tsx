@@ -72,22 +72,20 @@ export function GalleryForm({ onSuccess }: { onSuccess: () => void }) {
             </FormItem>
           )}
         />
-        <FormItem>
-          <FormLabel>File Foto/Video</FormLabel>
-          <FormControl>
-            <Input 
-              type="file" 
-              accept="image/*,video/*"
-              onChange={(e) => {
-                const selected = e.target.files?.[0]
-                if (selected) {
-                  setFile(selected)
-                  form.setValue('type', selected.type.startsWith('video') ? 'video' : 'image')
-                }
-              }} 
-            />
-          </FormControl>
-        </FormItem>
+        <div className="space-y-2">
+          <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">File Foto/Video</label>
+          <Input 
+            type="file" 
+            accept="image/*,video/*"
+            onChange={(e) => {
+              const selected = e.target.files?.[0]
+              if (selected) {
+                setFile(selected)
+                form.setValue('type', selected.type.startsWith('video') ? 'video' : 'image')
+              }
+            }} 
+          />
+        </div>
         
         <div className="pt-4 flex justify-end">
           <Button type="submit" disabled={mutation.isPending || !file}>
