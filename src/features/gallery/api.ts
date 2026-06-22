@@ -47,7 +47,7 @@ export const createGalleryItem = async (record: Omit<GalleryRecord, 'id' | 'crea
   const { data, error } = await supabase
     .from('galleries')
     .insert([
-      { title: record.title, type: record.type, file_url: record.url, created_by: userData.user.id }
+      { title: record.title, type: record.type, file_url: record.url }
     ])
     .select()
     .single()
