@@ -93,10 +93,10 @@ export default function FinancePage() {
 
   return (
     <div className="flex flex-1 flex-col gap-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Keuangan</h1>
-          <p className="text-muted-foreground">Kelola pemasukan dan pengeluaran acara 17 Agustus.</p>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Keuangan</h1>
+          <p className="text-sm md:text-base text-muted-foreground">Kelola pemasukan dan pengeluaran acara 17 Agustus.</p>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export default function FinancePage() {
               </div>
               <Dialog open={openIncome} onOpenChange={setOpenIncome}>
                 <DialogTrigger asChild>
-                  <Button>
+                  <Button className="w-full sm:w-auto">
                     <Plus className="mr-2 h-4 w-4" />
                     Tambah Pemasukan
                   </Button>
@@ -173,7 +173,7 @@ export default function FinancePage() {
               </div>
               <Dialog open={openExpense} onOpenChange={setOpenExpense}>
                 <DialogTrigger asChild>
-                  <Button>
+                  <Button className="w-full sm:w-auto">
                     <Plus className="mr-2 h-4 w-4" />
                     Tambah Pengeluaran
                   </Button>

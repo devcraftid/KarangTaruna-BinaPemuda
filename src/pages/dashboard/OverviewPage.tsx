@@ -50,8 +50,8 @@ Merdeka! ✊`
   return (
     <div className="flex flex-1 flex-col gap-8 max-w-[1000px] w-full pb-10">
       <div className="space-y-2">
-        <h1 className="text-3xl font-extrabold tracking-tight text-red-700">Laporan Akhir & Rekapitulasi</h1>
-        <p className="text-muted-foreground font-medium text-[15px] leading-relaxed max-w-[800px]">
+        <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-red-700">Laporan Akhir & Rekapitulasi</h1>
+        <p className="text-sm md:text-[15px] text-muted-foreground font-medium leading-relaxed max-w-[800px]">
           Generate and manage comprehensive summaries for the 79th Indonesian Independence Day celebrations. Detailed financial tracking, participant analytics, and sponsorship fulfillment at your fingertips.
         </p>
       </div>
@@ -179,7 +179,7 @@ Merdeka! ✊`
       {/* Share Section Row */}
       <div className="grid gap-6 md:grid-cols-[2fr_1fr]">
         <Card className="border shadow-sm rounded-2xl">
-          <CardContent className="p-6">
+          <CardContent className="p-4 md:p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded bg-green-50 text-green-600 flex items-center justify-center">
                 <MessageCircle className="w-5 h-5" />
@@ -189,10 +189,10 @@ Merdeka! ✊`
             <p className="text-sm text-muted-foreground font-medium mb-4">
               Send a text-based summary to the warga WhatsApp group.
             </p>
-            <div className="bg-red-50/50 rounded-xl p-4 mb-6 border border-red-100 font-mono text-sm text-zinc-800 whitespace-pre-wrap">
+            <div className="bg-red-50/50 rounded-xl p-3 md:p-4 mb-6 border border-red-100 font-mono text-xs md:text-sm text-zinc-800 whitespace-pre-wrap">
               {reportText}
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button variant="outline" className="font-bold flex-1 bg-red-50 text-red-700 border-red-200 hover:bg-red-100" onClick={handleCopy}>
                 <Copy className="w-4 h-4 mr-2" /> Copy Text
               </Button>
@@ -203,7 +203,7 @@ Merdeka! ✊`
           </CardContent>
         </Card>
 
-        <Card className="border-none shadow-sm rounded-2xl bg-[#3D2C2A] text-white overflow-hidden text-center flex flex-col items-center justify-center p-8 relative">
+        <Card className="border-none shadow-sm rounded-2xl bg-[#3D2C2A] text-white overflow-hidden text-center flex flex-col items-center justify-center p-6 md:p-8 relative">
           <div className="w-40 h-40 bg-white p-3 rounded-2xl mx-auto mb-6 shadow-xl relative z-10">
             {/* Generate real QR Code using QR Server API pointing to local landing page */}
             <img 

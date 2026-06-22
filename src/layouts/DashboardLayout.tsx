@@ -154,8 +154,8 @@ export default function DashboardLayout() {
       <div className="hidden md:block">
         <SidebarContent />
       </div>
-      <div className="flex flex-col bg-white dark:bg-zinc-900">
-        <header className="flex h-16 items-center gap-4 border-b bg-white dark:bg-zinc-950 px-6 justify-between">
+      <div className="flex flex-col bg-white dark:bg-zinc-900 min-w-0">
+        <header className="flex h-16 items-center gap-2 md:gap-4 border-b bg-white dark:bg-zinc-950 px-4 md:px-6 justify-between">
           <div className="flex items-center gap-4 flex-1">
             <Sheet>
               <SheetTrigger asChild>
@@ -225,7 +225,7 @@ export default function DashboardLayout() {
             </Button>
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-6 p-6 lg:p-8 bg-[#FCFCFC] dark:bg-zinc-900 overflow-auto">
+        <main className="flex flex-1 flex-col gap-4 md:gap-6 p-4 md:p-6 lg:p-8 bg-[#FCFCFC] dark:bg-zinc-900 overflow-auto">
           <Outlet context={{ role }} />
         </main>
       </div>
