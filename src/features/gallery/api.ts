@@ -17,7 +17,10 @@ export const getGallery = async () => {
     .order('created_at', { ascending: false })
   
   if (error) throw error
-  return data as GalleryRecord[]
+  return data.map((item: any) => ({
+    ...item,
+    url: item.file_url || item.url
+  })) as GalleryRecord[]
 }
 
 export const uploadMedia = async (file: File) => {
@@ -44,7 +47,7 @@ export const createGalleryItem = async (record: Omit<GalleryRecord, 'id' | 'crea
   const { data, error } = await supabase
     .from('galleries')
     .insert([
-      { ...record, created_by: userData.user.id }
+      { title: record.title, type: record.type, file_url: record.url, created_by: userData.user.id }
     ])
     .select()
     .single()
