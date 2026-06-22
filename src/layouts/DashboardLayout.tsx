@@ -144,7 +144,6 @@ export default function DashboardLayout() {
   ]
   
   if (role === 'admin') {
-    navigation.splice(4, 0, { name: 'Participants', href: '/dashboard/competitions?tab=participants', icon: Users })
     navigation.push({ name: 'Audit Logs', href: '/dashboard/audit', icon: FileText })
   }
 

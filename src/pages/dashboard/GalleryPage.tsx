@@ -81,9 +81,7 @@ export default function GalleryPage() {
                   {item.type === 'image' ? (
                     <img src={item.url} alt={item.title} className="object-cover w-full h-full" />
                   ) : (
-                    <div className="flex items-center justify-center w-full h-full bg-muted">
-                      <Video className="w-8 h-8 text-muted-foreground" />
-                    </div>
+                    <video src={item.url} controls className="object-cover w-full h-full" />
                   )}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-4 text-center text-white gap-2">
                     <p className="text-sm font-medium line-clamp-3">{item.title}</p>
