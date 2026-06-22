@@ -27,7 +27,57 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { useQuery } from '@tanstack/react-query'
 import { formatDistanceToNow } from 'date-fns'
 
+const SidebarContent = ({ pathname, role, navigation, session, handleLogout }: any) => (
+  <div className="flex h-full flex-col bg-[#FAFAFA] dark:bg-zinc-950 border-r">
+    <div className="flex flex-col h-24 justify-center px-6 pt-4">
+      <Link to="/" className="flex items-center gap-2">
+        <img src="/logo.png" alt="Logo" className="h-14 w-14 object-contain rounded-full" />
+      </Link>
+    </div>
+    <div className="flex-1 py-4">
+      <nav className="grid items-start px-4 text-sm font-medium gap-1.5">
+        {navigation.map((item: any) => {
+          const isActive = pathname === item.href || (item.name === 'Dashboard' && pathname === '/dashboard')
+          return (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`flex items-center gap-3 rounded-lg px-4 py-2.5 transition-all ${
+                isActive 
+                  ? 'bg-red-600 text-white shadow-sm' 
+                  : 'text-muted-foreground hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30'
+              }`}
+            >
+              <item.icon className={`h-4 w-4 ${isActive ? 'text-white' : ''}`} />
+              <span className="font-semibold">{item.name}</span>
+            </Link>
+          )
+        })}
+      </nav>
+    </div>
+    <div className="mt-auto p-4 border-t bg-white dark:bg-zinc-900">
+      <div className="flex items-center gap-3 mb-4 px-2">
+        <Avatar className="h-10 w-10 border shadow-sm">
+          <AvatarImage src={`https://api.dicebear.com/7.x/notionists/svg?seed=${session?.user?.email || 'user'}`} />
+          <AvatarFallback>AD</AvatarFallback>
+        </Avatar>
+        <div className="flex flex-col">
+          <span className="text-sm font-bold">{role === 'admin' ? 'Admin Utama' : 'Bendahara'}</span>
+          <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+            {role === 'admin' ? 'Superuser Access' : 'Finance Access'}
+          </span>
+        </div>
+      </div>
+      <Button variant="ghost" className="w-full justify-start gap-2 text-muted-foreground hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30" onClick={handleLogout}>
+        <LogOut className="h-4 w-4" />
+        <span className="font-semibold">Logout</span>
+      </Button>
+    </div>
+  </div>
+)
+
 export default function DashboardLayout() {
+
   const [session, setSession] = useState<any>(null)
   const [role, setRole] = useState<string>('bendahara')
   const navigate = useNavigate()
@@ -100,59 +150,10 @@ export default function DashboardLayout() {
 
   if (!session) return null 
 
-  const SidebarContent = () => (
-    <div className="flex h-full flex-col bg-[#FAFAFA] dark:bg-zinc-950 border-r">
-      <div className="flex flex-col h-24 justify-center px-6 pt-4">
-        <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.png" alt="Logo" className="h-14 w-14 object-contain rounded-full" />
-        </Link>
-      </div>
-      <div className="flex-1 py-4">
-        <nav className="grid items-start px-4 text-sm font-medium gap-1.5">
-          {navigation.map((item) => {
-            const isActive = pathname === item.href || (item.name === 'Dashboard' && pathname === '/dashboard')
-            return (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`flex items-center gap-3 rounded-lg px-4 py-2.5 transition-all ${
-                  isActive 
-                    ? 'bg-red-600 text-white shadow-sm' 
-                    : 'text-muted-foreground hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30'
-                }`}
-              >
-                <item.icon className={`h-4 w-4 ${isActive ? 'text-white' : ''}`} />
-                <span className="font-semibold">{item.name}</span>
-              </Link>
-            )
-          })}
-        </nav>
-      </div>
-      <div className="mt-auto p-4 border-t bg-white dark:bg-zinc-900">
-        <div className="flex items-center gap-3 mb-4 px-2">
-          <Avatar className="h-10 w-10 border shadow-sm">
-            <AvatarImage src={`https://api.dicebear.com/7.x/notionists/svg?seed=${session.user.email}`} />
-            <AvatarFallback>AD</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col">
-            <span className="text-sm font-bold">{role === 'admin' ? 'Admin Utama' : 'Bendahara'}</span>
-            <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
-              {role === 'admin' ? 'Superuser Access' : 'Finance Access'}
-            </span>
-          </div>
-        </div>
-        <Button variant="ghost" className="w-full justify-start gap-2 text-muted-foreground hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30" onClick={handleLogout}>
-          <LogOut className="h-4 w-4" />
-          <span className="font-semibold">Logout</span>
-        </Button>
-      </div>
-    </div>
-  )
-
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[260px_1fr]">
       <div className="hidden md:block">
-        <SidebarContent />
+        <SidebarContent pathname={pathname} role={role} navigation={navigation} session={session} handleLogout={handleLogout} />
       </div>
       <div className="flex flex-col bg-white dark:bg-zinc-900 min-w-0">
         <header className="flex h-16 items-center gap-2 md:gap-4 border-b bg-white dark:bg-zinc-950 px-4 md:px-6 justify-between">
@@ -165,7 +166,7 @@ export default function DashboardLayout() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="flex flex-col p-0 w-[260px]">
-                <SidebarContent />
+                <SidebarContent pathname={pathname} role={role} navigation={navigation} session={session} handleLogout={handleLogout} />
               </SheetContent>
             </Sheet>
 
