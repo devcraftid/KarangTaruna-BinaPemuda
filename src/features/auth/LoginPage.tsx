@@ -42,16 +42,16 @@ export default function LoginPage() {
       {/* Mobile Header (Hidden on Desktop) */}
       <div className="flex flex-col items-center justify-center md:hidden mb-6">
         <Link to="/" className="flex flex-col items-center gap-3">
-          <img src="/twisted-oak.png" alt="Logo" className="w-20 h-20 object-contain drop-shadow-md rounded-full bg-white p-1" />
-          <span className="font-extrabold text-2xl text-[#2C3B29] tracking-tight">Twisted Oak Apparel</span>
+          <img src="/logo.png" alt="Logo" className="w-20 h-20 object-contain drop-shadow-md" />
+          <span className="font-extrabold text-2xl text-zinc-900 tracking-tight">KarangTaruna Bina Pemuda</span>
         </Link>
       </div>
 
       <Card className="border-none shadow-2xl shadow-[#2C3B29]/10 rounded-[2rem] bg-white">
         <CardHeader className="space-y-2 pb-6">
-          <CardTitle className="text-3xl font-extrabold text-zinc-900 tracking-tight">Staff Login</CardTitle>
+          <CardTitle className="text-3xl font-extrabold text-zinc-900 tracking-tight">Login Panitia</CardTitle>
           <CardDescription className="text-base text-muted-foreground">
-            Sign in to access the administrator dashboard.
+            Akses dashboard admin dan bendahara.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -61,7 +61,7 @@ export default function LoginPage() {
             <Input 
               id="email" 
               type="email" 
-              placeholder="admin@twistedoak.com" 
+              placeholder="admin@bina-pemuda.org" 
               value={email}
               onChange={(e: any) => setEmail(e.target.value)}
               required 
@@ -79,7 +79,7 @@ export default function LoginPage() {
           </div>
           <Button type="submit" className="w-full h-12 rounded-xl text-base font-bold bg-[#2C3B29] hover:bg-[#1E291D] text-[#E5D3B3] shadow-lg shadow-[#2C3B29]/20 mt-4" disabled={loading}>
             {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
-            {loading ? 'Processing...' : 'Sign In'}
+            {loading ? 'Memproses...' : 'Login Sekarang'}
           </Button>
         </form>
       </CardContent>
