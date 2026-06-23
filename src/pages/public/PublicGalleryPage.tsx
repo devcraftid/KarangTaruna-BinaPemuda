@@ -156,6 +156,11 @@ export default function PublicGalleryPage() {
                         Malam Puncak
                       </Badge>
                     )}
+                    {item.title?.includes('Persiapan') && (
+                      <Badge className="absolute top-4 left-4 bg-amber-600 border-none px-2 py-0.5 rounded uppercase font-bold text-[10px] tracking-widest">
+                        Persiapan
+                      </Badge>
+                    )}
                   </div>
                   <div className="p-5">
                     <h3 className="font-bold text-lg text-zinc-900 leading-tight mb-2 group-hover:text-red-700 transition-colors">{item.title}</h3>

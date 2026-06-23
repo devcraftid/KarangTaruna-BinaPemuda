@@ -14,10 +14,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { toast } from 'sonner'
 
 const formSchema = z.object({
   title: z.string().min(2, 'Judul wajib diisi'),
+  category: z.string().min(1, 'Kategori wajib dipilih'),
   type: z.enum(['image', 'video']),
 })
 
@@ -29,6 +31,7 @@ export function GalleryForm({ onSuccess }: { onSuccess: () => void }) {
     resolver: zodResolver(formSchema) as any,
     defaultValues: {
       title: '',
+      category: 'Lainnya',
       type: 'image'
     },
   })
@@ -38,7 +41,8 @@ export function GalleryForm({ onSuccess }: { onSuccess: () => void }) {
       if (!file) throw new Error('File belum dipilih')
       
       const url = await uploadMedia(file)
-      return createGalleryItem({ ...values, url })
+      const finalTitle = values.category === 'Lainnya' ? values.title : `[${values.category}] ${values.title}`
+      return createGalleryItem({ title: finalTitle, type: values.type, url })
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['gallery'] })
@@ -68,6 +72,29 @@ export function GalleryForm({ onSuccess }: { onSuccess: () => void }) {
               <FormControl>
                 <Input placeholder="Misal: Lomba Makan Kerupuk" {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control as any}
+          name="category"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Kategori</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value as string}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Pilih Kategori" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="Lomba">Lomba</SelectItem>
+                  <SelectItem value="Malam Puncak">Malam Puncak</SelectItem>
+                  <SelectItem value="Persiapan">Persiapan</SelectItem>
+                  <SelectItem value="Lainnya">Lainnya</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
