@@ -71,6 +71,19 @@ export const deleteGalleryItem = async (id: string) => {
   
   if (error) throw error
   if (!deletedData || deletedData.length === 0) throw new Error('Data tidak dapat dihapus (mungkin diblokir oleh RLS Supabase)')
+  
+  // Hapus file dari storage bucket jika ada
+  if (oldData && oldData.file_url) {
+    const urlParts = oldData.file_url.split('/')
+    const fileName = urlParts[urlParts.length - 1]
+    if (fileName) {
+      const { error: storageError } = await supabase.storage.from('gallery_media').remove([fileName])
+      if (storageError) {
+        console.error('Gagal menghapus file dari storage:', storageError)
+      }
+    }
+  }
+
   await logAudit('DELETE', 'gallery', id, oldData || { id })
   return true
 }
