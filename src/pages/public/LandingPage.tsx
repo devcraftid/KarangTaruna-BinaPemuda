@@ -66,7 +66,7 @@ export default function LandingPage() {
             </SheetContent>
           </Sheet>
           <Link className="flex items-center gap-2" to="/">
-            <img src="/logo.png" alt="Logo Karang Taruna" className="h-12 w-12 object-contain rounded-full" />
+            <img src="/twisted-oak.png" alt="Twisted Oak Apparel" className="h-12 w-12 object-contain rounded-full bg-white p-0.5 shadow-sm" />
           </Link>
         </div>
         <nav className="hidden md:flex gap-8">
@@ -107,7 +107,7 @@ export default function LandingPage() {
 
             <div className="relative mx-auto lg:ml-auto w-full max-w-[400px]">
               <div className="aspect-square rounded-[2.5rem] overflow-hidden relative flex items-center justify-center p-8 bg-white/50 border shadow-2xl">
-                <img src="/logo.png" alt="Logo Karang Taruna" className="object-contain w-full h-full drop-shadow-xl hover:scale-105 transition-transform duration-500" />
+                <img src="/twisted-oak.png" alt="Twisted Oak Apparel" className="object-contain w-full h-full drop-shadow-xl hover:scale-105 transition-transform duration-500" />
               </div>
               <Card className="absolute -bottom-6 -left-6 border-none shadow-xl rounded-2xl bg-white/90 backdrop-blur p-4 flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
@@ -301,8 +301,8 @@ export default function LandingPage() {
       <footer className="bg-white border-t py-12 px-6 lg:px-12 mt-auto">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
-            <h3 className="font-extrabold text-xl text-red-700 tracking-tight">KarangTaruna Bina Pemuda</h3>
-            <p className="text-sm text-muted-foreground max-w-xs">Platform digital terpercaya untuk pengelolaan hari kemerdekaan di tingkat komunitas terkecil.</p>
+            <h3 className="font-extrabold text-xl text-zinc-900 tracking-tight">Twisted Oak Apparel</h3>
+            <p className="text-sm text-muted-foreground max-w-xs">Platform digital terpercaya untuk pengelolaan event dan transparansi kegiatan komunitas.</p>
           </div>
           <div className="flex gap-8 text-sm font-semibold text-muted-foreground">
             <Link to="#" className="hover:text-red-700 transition-colors">RT/RW Info</Link>
@@ -310,7 +310,7 @@ export default function LandingPage() {
             <Link to="#" className="hover:text-red-700 transition-colors">Privacy Policy</Link>
           </div>
           <p className="text-sm font-medium text-zinc-400">
-            © 2026 Panitia HUT RI - KarangTaruna Bina Pemuda Platform
+            © 2026 Twisted Oak Apparel Platform
           </p>
         </div>
       </footer>
